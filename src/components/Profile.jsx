@@ -17,10 +17,16 @@ const Profile = ({
   const [roleAModifier, setRoleAModifier] = useState("");
 
   const enleverAmi = (n, nomAmi) => {
+    const idToken = sessionStorage.getItem("id_token");
+    const expiresAt = sessionStorage.getItem("expires_at"); 
+
     console.log("wanna delete")
     let data = {nom:n, nomAmi}
     console.log(data)
-    axios.post("http://localhost:5000/enlever-ami", data)
+    const config = {
+      headers: { Authorization: sessionStorage.getItem("id_token") }
+    };
+    axios.delete(`http://localhost:5000/enlever-ami/${nomAmi}`, config)
       .then(res => {
         console.log(res);
         setFriends(res.data.friends)
