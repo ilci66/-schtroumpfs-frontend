@@ -1,13 +1,233 @@
-body {
+*,*::before, *::after {
+  padding: 0;
   margin: 0;
+}
+img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}
+
+body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+li {
+  list-style: none;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+h1, h2 {
+  text-align: center;
+  margin-top: 20px;
+}
+label {
+  margin-top:10px;
+}
+input,option,select {
+  padding: 6px 10px;
+  border-radius: 15px;
+  border: 1px solid turquoise;
+}
+.sign-btn {
+  border: none;
+  padding: 8px 12px;
+  margin-top: 30px;
+  background-color: rgb(70, 149, 214);
+  color: white;
+  transition: 0.3s;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.sign-btn:hover {
+  opacity: 0.8;
+}
+/* -------- ------ navbar -------- */
+.navbar {
+  display: flex;
+  padding: 20px;
+  background-color: rgb(70, 149, 214);
+}
+.navbar__ul {
+  margin-left: auto;
+  list-style: none;
+  display: flex;
+}
+
+.navbar__ul > li {
+  margin-left: 20px;
+  color: white;
+}
+.navbar a {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.navbar a:hover {
+  color: lightblue;
+}
+.dc-btn {
+  background-color: white;
+  border: none;
+  color: rgb(70, 149, 214);
+  padding: 6px 12px;
+  border-radius: 15px;
+  transition: 0.3s;
+}
+.dc-btn:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+/* --------------------Page----------------------- */
+.page {
+  padding: 20px;
+}
+/* -----------------Footer--------------------- */
+footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: lightslategray;
+  padding: 40px;
+}
+.sign-up-form {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: auto;
+}
+
+/* ---------------------HOME----------------------- */
+
+.home-page {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+/* ---------------Profil--------------------- */
+.friend-container {
+  background-color: lightcyan;
+}
+
+.ajoutez-ami {
+  background-color: rgb(70, 149, 214);
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 15px;
+  transition: 0.3s;
+  width: 100%;
+}
+.ajoutez-ami:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.profile-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 2px 2px 6px 12px rgb(241, 241, 255);
+  padding: 20px;
+  border-radius: 15px;
+}
+.amis-title {
+  margin-top: 40px;
+}
+.amis-ul {
+  margin-top: 20px;
+  width: 100%;
+}
+.amis-ul > li {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 5px;
+}
+.enlever-btn {
+  background-color: rgb(148, 28, 28);
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 15px;
+  transition: 0.3s;
+}
+.enlever-btn:hover {
+  opacity: .8;
+  cursor: pointer;
+}
+
+
+/* ---------------Smurf list----------------- */
+.smurf-list-container {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+.smurf-list-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+.smurf-list-card {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 2px 2px 2px 2px rgb(224, 224, 224);
+  border-radius: 15px;
+  padding: 10px;
+  
+}
+.smurf-list-card > p {
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 10px 0;
+}
+.blue-text {
+  color: rgb(70, 149, 214);
+}
+
+
+/* ---------------------Edit------------------ */
+.modifier-btn {
+  width: 100%;
+  background-color: rgb(70, 149, 214);
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 15px;
+  transition: 0.3s;
+  margin: 20px 0;
+}
+.modifier-btn:hover:not(:disabled) {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.edit-box {
+  width: 100%;
+  grid-row: 2/3;
+}
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+button:disabled {
+  background-color: rgb(205, 213, 226);
+  transition: 0;
 }
