@@ -16,7 +16,7 @@ const SignUpForm = () => {
       setErrText("Merci de remplir tous les champs");
       return
     } else if(password !== password2) {
-      setErrText("Passwords are not identical");
+      setErrText("Les mots de passe ne correspondent pas!");
       return
     } else {
       const data = {nom, password, password2, role}
@@ -32,11 +32,12 @@ const SignUpForm = () => {
 
           sessionStorage.setItem('id_token', token);
           sessionStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
-
+          setErrText("")
           if(data){ window.location = '/'}
         })
         .catch(err => {
-          alert("Le nom existe déjà dans la base de données ")
+          setErrText(err.response.data.error);
+          // alert("Le nom existe déjà dans la base de données ")
           console.log(err)
         })
     }
@@ -67,7 +68,7 @@ const SignUpForm = () => {
       <button className="sign-btn">Sign Up</button>
     </form>
     <div className="sign-err-box">
-      <p>{errText}</p>
+      <p className='red-text'>{errText}</p>
     </div>
   </>)
 }

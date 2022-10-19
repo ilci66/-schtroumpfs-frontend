@@ -12,7 +12,7 @@ const Profile = ({
   setFriends,
 }) => {
 
-
+  const [errText, setErrText] = useState("")
   const [nomAModifier, setNomAModifier] = useState("");
   const [roleAModifier, setRoleAModifier] = useState("");
 
@@ -28,9 +28,14 @@ const Profile = ({
     };
     axios.delete(`http://localhost:5000/enlever-ami/${nomAmi}`, config)
       .then(res => {
-        console.log(res);
+        // console.log(res);
+        setErrText("");
         setFriends(res.data.friends)
-      }).catch(console.log)
+      }).catch(err => {
+        setErrText(err.response.data.error)
+        console.log(err)
+      
+      })
   };
 
   const modifierProfile = () => {
@@ -54,8 +59,12 @@ const Profile = ({
         setNom(n);
         setRole(r);
         setFriends(f);
+        setErrText("");
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        setErrText(err.response.data.error);
+        console.log(err)
+      })
     }
   }, [])
     
@@ -70,13 +79,14 @@ const Profile = ({
         <h3 className='amis-title'>Mes Amis</h3>
         <ul className='amis-ul'>{Array.isArray(friends) && friends.map(f => <li key={f}>{f} <button className='enlever-btn' onClick={() => enleverAmi(nom, f)}>Enlever</button></li>)}
         </ul>
+        <p className='red-text'>{errText}</p>
         <button 
         onClick={modifierProfile} 
         className='modifier-btn'>
           Modifier
         </button>
       </>
-      :<p>Vous ne pouvez pas voir votre profil tant que vous n'êtes pas connecté.<Link to="/sign-in"> Connectez-vous </Link> </p>}
+      :<p>Vous ne pouvez pas voir votre profil tant que vous n'êtes pas connecté. <Link to="/sign-in"> Connectez-vous </Link> </p>}
     <EditForm 
       nomAModifier={nomAModifier} 
       setNomAModifier={setNomAModifier}

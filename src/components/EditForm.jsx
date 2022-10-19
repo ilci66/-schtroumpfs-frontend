@@ -11,7 +11,7 @@ const EditForm = ({
   setFriends,
 }) => {
   const [password, setPassword] = useState("")
-
+  const [errText, setErrText] = useState("")
   const soumettreFormulaire = (e) => {
     e.preventDefault()
     const config = {
@@ -41,12 +41,18 @@ const EditForm = ({
             setNom(n);
             setRole(r);
             setFriends(f);
+            setErrText("")
           }
         })
-        .catch(console.log)
+        .catch(err => {
+          setErrText(err.response.data.error)
+          console.log(err)
+          
+        })
 
     } else {
-      console.log("Jeton expiré ");
+      setErrText("Jeton expiré")
+      console.log("Jeton expiré");
 
     }
   }
@@ -71,6 +77,7 @@ const EditForm = ({
       <input required onChange={(e) => setPassword(e.target.value)} type="password" id='password' name='password' />
       
       <button disabled={password === "" && nomAModifier === ""} onClick={(e) => soumettreFormulaire(e)} className="sign-btn">Soumettre</button>
+      <p className='red-text'>{errText}</p>
     </form>
   </div>)
 }

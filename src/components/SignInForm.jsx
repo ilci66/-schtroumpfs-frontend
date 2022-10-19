@@ -9,7 +9,7 @@ const SignInForm = () => {
 
   const seConnecter = (e) => {
     e.preventDefault();
-
+    console.log(nom, password);
     if(nom === "" || password === "") {
       setErrtext("Merci de remplir tous les champs")
       return 
@@ -27,12 +27,13 @@ const SignInForm = () => {
           const expiresAt = Date.now() + Number.parseInt(expiresIn) * 86400 * 1000; // day
           sessionStorage.setItem('id_token', token);
           sessionStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
-          
+          setErrtext("");
           if(data){ window.location = '/'}
         })
         .catch(err => {
-          alert("Abonnement n'existe pas!")
-          console.log(err)
+          // alert("Abonnement n'existe pas!")
+          setErrtext(err.response.data.error)
+          console.log(err.response.data.error)
         })
 
   }
@@ -49,7 +50,7 @@ const SignInForm = () => {
       
       <button onClick={seConnecter} className="sign-btn">Se Connnecter</button>
       <div className="sign-err-box">
-        <p>{errText}</p>
+        <p className='red-text'>{errText}</p>
       </div>
     </form>
 

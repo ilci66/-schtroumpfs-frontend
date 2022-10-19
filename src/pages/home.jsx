@@ -33,7 +33,7 @@ const Home = () => {
       axios.post('http://localhost:5000/verify', bodyParameters, config).then(res => {
         if(res.status === 200) setSuccess(true)
         else setSuccess(false)
-      }).catch(() => {
+      }).catch((err) => {
         setSuccess(false)
         return
       });
@@ -59,7 +59,6 @@ const Home = () => {
       success={success} 
       setFriends={setFriends}
     />
-
   </div>)
 }
 

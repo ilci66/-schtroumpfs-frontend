@@ -38,6 +38,13 @@ input,option,select {
   border-radius: 15px;
   border: 1px solid turquoise;
 }
+.red-text {
+  text-transform: capitalize;
+  color: red;
+  width: 100%;
+  text-align: center;
+}
+/* --------------------------------------------------------- */
 .sign-btn {
   border: none;
   padding: 8px 12px;
@@ -184,6 +191,7 @@ footer {
 .smurf-list-card {
   display:flex;
   flex-direction: column;
+  min-width: 100px;
   align-items: center;
   box-shadow: 2px 2px 2px 2px rgb(224, 224, 224);
   border-radius: 15px;
